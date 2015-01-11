@@ -1,0 +1,19 @@
+# Maintainer: Vadim Kuznetsov <rics@gmx.it>
+
+pkgname=macfun
+pkgver=20150111
+pkgrel=1
+pkgdesc='CPU fan speed control daemon for the Apple Mac mini'
+arch=('any')
+url='https://github.com/setsid/macfun'
+license=('GPL')
+depends=('python')
+makedepends=('make')
+source=("git+https://github.com/setsid/macfun.git#branch=master")
+md5sums=('SKIP')
+
+package()
+{
+    cd "$srcdir"/$pkgname
+    make DESTDIR="$pkgdir" install
+}
