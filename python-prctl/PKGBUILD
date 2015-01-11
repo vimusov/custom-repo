@@ -1,0 +1,41 @@
+# Maintainer: Vadim Kuznetsov <rics@gmx.it>
+
+pkgname=('python-prctl' 'python2-prctl')
+pkgver=20150110
+pkgrel=1
+pkgdesc='Python interface to the prctl() syscall'
+arch=('i686' 'x86_64')
+url='https://github.com/seveas/python-prctl'
+license=('GPL3')
+makedepends=('python-setuptools' 'python2-setuptools' 'git')
+source=("git+https://github.com/seveas/python-prctl.git#branch=master")
+md5sums=('SKIP')
+
+prepare()
+{
+    cd "$srcdir"
+    cp -ax python-prctl python2-prctl
+    find python2-prctl -name '*py' -exec sed -e 's_#!/usr/bin/env python_&2_' -i {} \;
+}
+
+build()
+{
+    cd "$srcdir"/python-prctl
+    python setup.py build
+    cd ../python2-prctl
+    python2 setup.py build
+}
+
+package_python-prctl()
+{
+    depends=('python' 'libcap')
+    cd "$srcdir"/python-prctl
+    python setup.py install --root="${pkgdir}" --optimize=1
+}
+
+package_python2-prctl()
+{
+    depends=('python2' 'libcap')
+    cd "$srcdir"/python-prctl
+    python2 setup.py install --root="${pkgdir}" --optimize=1
+}
