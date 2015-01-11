@@ -1,0 +1,24 @@
+# Maintainer: Vadim Kuznetsov <rics@gmx.it>
+
+pkgname=eclipse-cpp
+pkgver=20150111
+pkgrel=1
+pkgdesc="Powerful C/C++ IDE"
+arch=('x86_64')
+options=('!strip')
+url="http://www.eclipse.org/"
+license=('EPL')
+depends=('java-environment>=6')
+conflicts=('eclipse-cdt')
+provides=('eclipse-cdt')
+source=("http://mirror.tspu.ru/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-cpp-luna-SR1-linux-gtk-x86_64.tar.gz")
+md5sums=('2b68d7dc1e08549a9af4f69226c74d97')
+
+package()
+{
+    cd "$srcdir"
+    mkdir -p "$pkgdir"/opt/$pkgname
+    mv eclipse/* "$pkgdir"/opt/$pkgname
+    mkdir -p "$pkgdir"/usr/bin
+    ln -s /opt/$pkgname/eclipse "$pkgdir"/usr/bin/eclipse-cpp
+}
