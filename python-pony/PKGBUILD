@@ -1,0 +1,41 @@
+# Maintainer: Vadim Kuznetsov <rics@gmx.it>
+
+pkgname=('python-pony' 'python2-pony')
+pkgver=0.6
+pkgrel=1
+pkgdesc='Pony Object-Relational Mapper'
+arch=('any')
+url='https://github.com/ponyorm/pony'
+license=('AGPL')
+makedepends=('python-setuptools' 'python2-setuptools' 'git')
+source=("git+https://github.com/ponyorm/pony.git#tag=$pkgver")
+md5sums=('SKIP')
+
+prepare()
+{
+    cd "$srcdir"
+    cp -ax pony pony-py2
+    find pony-py2 -name '*py' -exec sed -e 's_#!/usr/bin/env python_&2_' -i {} \;
+}
+
+build()
+{
+    cd "$srcdir"/pony
+    python setup.py build
+    cd ../pony-py2
+    python2 setup.py build
+}
+
+package_python-pony()
+{
+    depends=('python')
+    cd "$srcdir"/pony
+    python setup.py install --root="${pkgdir}" --optimize=1
+}
+
+package_python2-pony()
+{
+    depends=('python2')
+    cd "$srcdir"/pony-py2
+    python2 setup.py install --root="${pkgdir}" --optimize=1
+}
