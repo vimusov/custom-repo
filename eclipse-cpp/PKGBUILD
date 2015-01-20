@@ -2,13 +2,13 @@
 
 pkgname=eclipse-cpp
 pkgver=20150111
-pkgrel=1
+pkgrel=2
 pkgdesc="Powerful C/C++ IDE"
 arch=('x86_64')
 options=('!strip')
 url="http://www.eclipse.org/"
 license=('EPL')
-depends=('java-environment>=6')
+depends=('jre' 'swt')
 conflicts=('eclipse-cdt')
 provides=('eclipse-cdt')
 source=("http://mirror.tspu.ru/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-cpp-luna-SR1-linux-gtk-x86_64.tar.gz")
