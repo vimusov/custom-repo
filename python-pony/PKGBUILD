@@ -1,7 +1,7 @@
 # Maintainer: Vadim Kuznetsov <rics@gmx.it>
 
 pkgname=('python-pony' 'python2-pony')
-pkgver=0.6
+pkgver=0.6.1
 pkgrel=1
 pkgdesc='Pony Object-Relational Mapper'
 arch=('any')
