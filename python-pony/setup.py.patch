@@ -1,0 +1,13 @@
+--- setup.py	2015-11-06 11:09:14.747041851 +0500
++++ setup.py.patched	2015-11-06 11:23:10.830360107 +0500
+@@ -91,8 +91,8 @@
+ 
+ if __name__ == "__main__":
+     pv = sys.version_info[:2]
+-    if pv not in ((2, 6), (2, 7), (3, 3), (3, 4)):
+-        s = "Sorry, but %s %s requires Python of one of the following versions: 2.6, 2.7, 3.3 or 3.4." \
++    if pv not in ((2, 6), (2, 7), (3, 3), (3, 4), (3, 5)):
++        s = "Sorry, but %s %s requires Python of one of the following versions: 2.6, 2.7, 3.3, 3.4 or 3.5." \
+             " You have version %s"
+         print(s % (name, version, sys.version.split(' ', 1)[0]))
+         sys.exit(1)

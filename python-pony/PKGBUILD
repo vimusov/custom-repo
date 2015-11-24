@@ -8,14 +8,16 @@ arch=('any')
 url='https://github.com/ponyorm/pony'
 license=('AGPL')
 makedepends=('python-setuptools' 'python2-setuptools' 'git')
-source=("git+https://github.com/ponyorm/pony.git#tag=$pkgver")
-md5sums=('SKIP')
+source=("git+https://github.com/ponyorm/pony.git#tag=$pkgver" "setup.py.patch")
+md5sums=('SKIP' 'c72f088d08772add55a3e230e190ba39')
 
 prepare()
 {
     cd "$srcdir"
     cp -ax pony pony-py2
     find pony-py2 -name '*py' -exec sed -e 's_#!/usr/bin/env python_&2_' -i {} \;
+    # apply patch on setup.py for Python 3.5 support
+    patch --directory="$srcdir"/pony --strip=0 < "$srcdir"/setup.py.patch
 }
 
 build()
