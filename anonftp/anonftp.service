@@ -1,0 +1,11 @@
+[Unit]
+Description=Insecure anonymous FTP server based on pyftpdlib
+After=network.target
+Wants=network.target
+
+[Service]
+ExecStart=/usr/bin/anonftp --port 21 --user ftp --root /srv/ftp
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
