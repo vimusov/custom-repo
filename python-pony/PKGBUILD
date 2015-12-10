@@ -1,23 +1,22 @@
 # Maintainer: Vadim Kuznetsov <rics@gmx.it>
 
+_commit=ec4ac9f
 pkgname=('python-pony' 'python2-pony')
-pkgver=0.6.1
+pkgver=0.6.2.git.${_commit}
 pkgrel=1
 pkgdesc='Pony Object-Relational Mapper'
 arch=('any')
 url='https://github.com/ponyorm/pony'
 license=('AGPL')
 makedepends=('python-setuptools' 'python2-setuptools' 'git')
-source=("git+https://github.com/ponyorm/pony.git#tag=$pkgver" "setup.py.patch")
-md5sums=('SKIP' 'c72f088d08772add55a3e230e190ba39')
+source=("git+https://github.com/ponyorm/pony.git#commit=${_commit}")
+md5sums=('SKIP')
 
 prepare()
 {
     cd "$srcdir"
     cp -ax pony pony-py2
-    find pony-py2 -name '*py' -exec sed -e 's_#!/usr/bin/env python_&2_' -i {} \;
-    # apply patch on setup.py for Python 3.5 support
-    patch --directory="$srcdir"/pony --strip=0 < "$srcdir"/setup.py.patch
+    find pony-py2 -name '*.py' -exec sed -e 's_#!/usr/bin/env python_&2_' -i {} \;
 }
 
 build()
@@ -32,12 +31,12 @@ package_python-pony()
 {
     depends=('python')
     cd "$srcdir"/pony
-    python setup.py install --root="${pkgdir}" --optimize=1
+    python setup.py install --root="$pkgdir" --optimize=1
 }
 
 package_python2-pony()
 {
     depends=('python2')
     cd "$srcdir"/pony-py2
-    python2 setup.py install --root="${pkgdir}" --optimize=1
+    python2 setup.py install --root="$pkgdir" --optimize=1
 }
