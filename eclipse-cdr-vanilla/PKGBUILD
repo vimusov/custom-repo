@@ -1,16 +1,16 @@
 # Maintainer: Vadim Kuznetsov <rics@gmx.it>
 
-pkgname=eclipse-cpp
+pkgname=eclipse-cdt-vanilla
 pkgver=20151209
 pkgrel=1
-pkgdesc="Powerful C/C++ IDE"
+pkgdesc="Powerful C/C++ IDE (CDT vanilla version)"
 arch=('x86_64')
 options=('!strip')
 url="http://www.eclipse.org/"
 license=('EPL')
 depends=('jre' 'swt')
-conflicts=('eclipse-cdt')
-provides=('eclipse-cdt')
+conflicts=('eclipse-cdt' 'eclipse-cpp')
+provides=('eclipse-cdt' 'eclipse-cpp')
 source=("eclipse-cpp-mars-1-linux-gtk-x86_64.tar.gz")
 md5sums=('5f0bf4989075058af670866e952be044')
 
