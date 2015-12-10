@@ -2,7 +2,7 @@
 
 _commit=ec4ac9f
 pkgname=('python-pony' 'python2-pony')
-pkgver=0.6.2.git.${_commit}
+pkgver=0.6.1.git.${_commit}
 pkgrel=1
 pkgdesc='Pony Object-Relational Mapper'
 arch=('any')
