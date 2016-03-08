@@ -18,20 +18,6 @@ arch=('i686' 'x86_64')
 depends=('curl' 'gmp' 'iproute2' 'openssl' 'sqlite' 'libcap' 'libsystemd')
 conflicts=('openswan')
 options=(!libtool)
-backup=(
-	etc/ipsec.conf 
-	etc/swanctl/swanctl.conf
-	etc/strongswan.conf 
-	etc/strongswan.d/{charon-logging.conf,charon.conf,pki.conf,pool.conf,scepclient.conf,starter.conf,swanctl.conf}
-	etc/strongswan.d/charon/{aesni.conf,attr-sql.conf,attr.conf,cmac.conf,connmark.conf,\
-constraints.conf,curl.conf,des.conf,dhcp.conf,dnskey.conf,eap-aka-3gpp2.conf,eap-aka.conf,\
-eap-gtc.conf,eap-identity.conf,eap-md5.conf,eap-mschapv2.conf,eap-radius.conf,eap-sim-file.conf,\
-eap-sim.conf,eap-simaka-pseudonym.conf,eap-simaka-reauth.conf,eap-tls.conf,ext-auth.conf,farp.conf,\
-fips-prf.conf,forecast.conf,gmp.conf,ha.conf,hmac.conf,kernel-netlink.conf,md5.conf,nonce.conf,openssl.conf,\
-pem.conf,pgp.conf,pkcs1.conf,pkcs12.conf,pkcs7.conf,pkcs8.conf,pubkey.conf,random.conf,rc2.conf,resolve.conf,\
-revocation.conf,sha1.conf,sha2.conf,socket-default.conf,sql.conf,sqlite.conf,sshkey.conf,stroke.conf,updown.conf,\
-vici.conf,x509.conf,xauth-eap.conf,xauth-generic.conf,xcbc.conf,chapoly.conf,unity.conf}
-)
 
 source=("https://download.strongswan.org/strongswan-${pkgver}.tar.bz2"
 	"configure_ac.patch"
@@ -57,7 +43,7 @@ build() {
 
   ./configure --prefix=/usr \
         --sbindir=/usr/bin \
-        --sysconfdir=/etc \
+        --sysconfdir=/etc/$pkgname \
         --libexecdir=/usr/lib \
         --with-ipsecdir=/usr/lib/strongswan \
         --enable-sqlite \
