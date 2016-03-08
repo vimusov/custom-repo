@@ -1,5 +1,5 @@
---- configure.ac	2015-11-26 14:38:10.000000000 +0500
-+++ configure.ac.patched	2016-03-04 19:00:03.395406767 +0500
+--- a/configure.ac	2015-11-26 14:38:10.000000000 +0500
++++ b/configure.ac	2016-03-04 19:00:03.395406767 +0500
 @@ -935,11 +935,11 @@
  		AC_MSG_ERROR([not found (try --with-systemdsystemunitdir)])
  	fi
@@ -14,3 +14,4 @@
  	AC_SUBST(systemd_journal_CFLAGS)
  	AC_SUBST(systemd_journal_LIBS)
  fi
+
