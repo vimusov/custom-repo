@@ -1,0 +1,25 @@
+# Maintainer: Vadim Kuznetsov <vimusov@gmail.com>
+
+pkgname=qnotify
+pkgver=1.0
+pkgrel=1
+pkgdesc='Utility that shows a text message on a screen'
+arch=('i686' 'x86_64')
+url='https://github.com/setsid/qnotify'
+license=('GPL')
+depends=('qt5-base')
+makedepends=('make' 'pkg-config')
+source=("git+https://github.com/setsid/${pkgname}.git#tag=v${pkgver}")
+md5sums=('SKIP')
+
+build()
+{
+    cd "$srcdir"/"$pkgname"
+    make
+}
+
+package()
+{
+    cd "$srcdir"/"$pkgname"
+    make install DESTDIR="$pkgdir"
+}
