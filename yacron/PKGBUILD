@@ -1,0 +1,34 @@
+# Maintainer: Vadim Kuznetsov <vimusov@gmail.com>
+
+pkgname=yacron
+pkgver=1.0
+pkgrel=1
+pkgdesc='Yet another cron-like daemon'
+arch=('any')
+url='https://github.com/setsid/yacron'
+license=('GPL')
+depends=('python')
+makedepends=('python-setuptools')
+source=("git+https://github.com/setsid/${pkgname}.git#tag=v${pkgver}" "${pkgname}.service")
+md5sums=('SKIP' 'b31885a2d2a90d60ea559fb6ea655f3b')
+
+build()
+{
+    cd "$srcdir"/"$pkgname"
+    python setup.py build
+}
+
+check()
+{
+    cd "$srcdir"/"$pkgname"
+    python setup.py test
+}
+
+package()
+{
+    cd "$srcdir"/"$pkgname"
+    python setup.py install --optimize=1 --skip-build --root="$pkgdir"
+    install -D --mode=0644 \
+        "$srcdir"/"${pkgname}.service" \
+        "$pkgdir"/usr/lib/systemd/system/"${pkgname}.service"
+}

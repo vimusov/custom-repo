@@ -1,0 +1,11 @@
+[Unit]
+Description=Yet another cron-like daemon
+After=network.target
+Wants=network.target
+
+[Service]
+ExecStart=/usr/bin/yacron --user rics
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
