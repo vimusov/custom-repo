@@ -1,6 +1,6 @@
 [Unit]
 Description=A fully recursive caching DNS resolver
-After=network.target systemd-resolved.service
+After=network.target
 
 [Service]
 ExecStartPre=/usr/bin/install --directory --mode=0755 --owner=nobody --group=nobody /run/deadwood

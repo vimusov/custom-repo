@@ -8,7 +8,7 @@ license=('custom')
 backup=('etc/dwood3rc')
 source=("http://maradns.org/deadwood/stable/${pkgname}-${pkgver}.tar.bz2" "${pkgname}.service")
 md5sums=('fc8ce5d3e7e6a9e09fc7e1a0ee1af88d'
-         '5ee230d706b95dc044278bc5bdb73111')
+         '13317c275c3064b6718f55f6ff75c49a')
 
 build()
 {
