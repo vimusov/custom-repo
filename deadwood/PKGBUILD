@@ -1,14 +1,21 @@
 pkgname=deadwood
 pkgver=3.2.09
-pkgrel=1
+pkgrel=2
 pkgdesc="A fully recursive caching DNS resolver"
 arch=('i686' 'x86_64')
 url="http://maradns.samiam.org/deadwood/"
 license=('custom')
-backup=('etc/dwood3rc')
-source=("http://maradns.org/deadwood/stable/${pkgname}-${pkgver}.tar.bz2" "${pkgname}.service")
+backup=("etc/${pkgname}.conf")
+source=(
+    "http://maradns.org/deadwood/stable/${pkgname}-${pkgver}.tar.bz2"
+    config.example
+    service
+    tmpfile
+)
 md5sums=('fc8ce5d3e7e6a9e09fc7e1a0ee1af88d'
-         '13317c275c3064b6718f55f6ff75c49a')
+         'b9ac82557cb3f895f5ed932dc49aeeb8'
+         '7f3905f3fb5877979e385c54ea6ac899'
+         '98135313d9d0ec2f8bb873de9442d35a')
 
 build()
 {
@@ -17,16 +24,19 @@ build()
 
 package()
 {
-    cd "$srcdir"/"${pkgname}-$pkgver"    
-
-    install -D --mode=0644 doc/dwood3rc "$pkgdir"/etc/dwood3rc
-
-    sed -r -i "$pkgdir"/etc/dwood3rc \
-        -e 's|^\s*chroot_dir\s+=\s+"[^"]+"(.*)$|chroot_dir = "/run/deadwood"\1|'
-
-    install -D --mode=0755 src/Deadwood "$pkgdir"/usr/bin/"$pkgname"
+    install -D --mode=0755 \
+        "$srcdir"/"${pkgname}-$pkgver"/src/Deadwood \
+        "$pkgdir"/usr/bin/"$pkgname"
 
     install -D --mode=0644 \
-        "$srcdir"/"${pkgname}.service" \
+        "$srcdir"/config.example \
+        "$pkgdir"/etc/"${pkgname}.conf"
+
+    install -D --mode=0644 \
+        "$srcdir"/service \
         "$pkgdir"/usr/lib/systemd/system/"${pkgname}.service"
+
+    install -D --mode=0644 \
+        "$srcdir"/tmpfile \
+        "$pkgdir"/usr/lib/tmpfiles.d/"${pkgname}.conf"
 }

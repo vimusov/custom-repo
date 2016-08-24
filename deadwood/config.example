@@ -1,0 +1,23 @@
+# http://maradns.samiam.org/deadwood/doc/Deadwood.html
+
+maradns_uid = 99
+maradns_gid = 99
+
+maxprocs = 2048
+
+chroot_dir = "/run/deadwood"
+
+cache_file = "/cache"
+maximum_cache_elements = 60000
+
+reject_mx = 0
+reject_ptr = 0
+reject_aaaa = 1
+filter_rfc1918 = 0
+
+bind_address = "127.0.0.1"
+
+upstream_servers = {}
+upstream_servers["."] = "8.8.8.8, 8.8.4.4"
+
+recursive_acl = "0.0.0.0/0"
