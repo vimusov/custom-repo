@@ -1,5 +1,5 @@
 pkgname=telegram-desktop-bin
-pkgver=0.10.6
+pkgver=0.10.11
 pkgrel=1
 pkgdesc="Official desktop version of Telegram messaging app - Static binaries"
 arch=('x86_64')
@@ -7,7 +7,7 @@ url="https://desktop.telegram.org"
 license=('GPL3')
 depends=('glib2' 'libx11')
 source=('https://updates.tdesktop.com/tlinux/tsetup.'$pkgver'.tar.xz')
-md5sums=('a43365840857d4745051e6646b25567b')
+md5sums=('af75f6541a7910b34d9da89ea999897f')
 
 package()
 {
