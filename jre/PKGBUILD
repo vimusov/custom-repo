@@ -4,8 +4,8 @@
 
 pkgname=jre
 _major=8
-_minor=66
-_build=b17
+_minor=112
+_build=b15
 pkgver=${_major}u${_minor}
 pkgrel=1
 pkgdesc="Oracle Java Runtime Environment"
@@ -17,9 +17,9 @@ depends=('ca-certificates-java' 'desktop-file-utils' 'hicolor-icon-theme' 'java-
 optdepends=('alsa-lib: for basic sound support'
             'gtk2: for Gtk+ look and feel (desktop)'
             'ttf-font: fonts')
-makedepends=('pacman>=4.2.0')
 provides=("java-runtime=$_major" "java-runtime-headless=$_major" "java-web-start=$_major"
-          "java-runtime-jre=$_major" "java-runtime-headless-jre=$_major" "java-web-start-jre=$_major")
+          "java-runtime-jre=$_major" "java-runtime-headless-jre=$_major" "java-web-start-jre=$_major"
+          "java-openjfx=$_major")
 
 # Variables
 DLAGENTS=('http::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -b oraclelicense=a -o %o %u')
@@ -49,8 +49,8 @@ source_i686=("http://download.oracle.com/otn-pub/java/jdk/$pkgver-$_build/$pkgna
 source_x86_64=("http://download.oracle.com/otn-pub/java/jdk/$pkgver-$_build/$pkgname-$pkgver-linux-x64.tar.gz")
 md5sums=('b3c7031bc65c28c2340302065e7d00d3'
          '762729fa0faba8ff2b5a29c249c95079')
-md5sums_i686=('4656044616b97e4f578680d1ef5d55c0')
-md5sums_x86_64=('af82cfb37e139458ae6297ae1bfc4f5e')
+md5sums_i686=('ff4e17ebd082b5c5bad457751468769d')
+md5sums_x86_64=('5ccc09b2cbbf715b583fad72b070b69d')
 ## Alternative mirror, if your local one is throttled:
 #source_x86_64=("http://ftp.wsisiz.edu.pl/pub/pc/pozyteczne%20oprogramowanie/java/$pkgname-$pkgver-linux-x64.gz")
 
@@ -85,7 +85,7 @@ package() {
     done
 
     # Fix .desktop paths
-    sed -e "s|Exec=|&$_jvmdir/bin/|" \
+    sed -e "s|Exec=|Exec=$_jvmdir/bin/|" \
         -e "s|.png|-$_jname.png|" \
     -i lib/desktop/applications/*
 
