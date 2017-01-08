@@ -1,42 +1,26 @@
 # Maintainer: Vadim Kuznetsov <rics@gmx.it>
 
 pkgbase=pyftpdlib
-pkgname=("python-$pkgbase" "python2-$pkgbase")
-pkgver=1.4.0
+pkgname=python-$pkgbase
+pkgver=1.5.0
 pkgrel=1
 pkgdesc='Extremely fast and scalable Python FTP server library'
 arch=('any')
 url='https://github.com/giampaolo/pyftpdlib'
 license=('custom')
-makedepends=('python-setuptools' 'python2-setuptools' 'git')
+depends=('python')
+makedepends=('python-setuptools' 'git')
 source=("${pkgbase}::git+https://github.com/giampaolo/pyftpdlib#tag=release-$pkgver")
 md5sums=('SKIP')
 
-prepare()
-{
-    cd "$srcdir"
-    cp -ax $pkgbase ${pkgbase}-py2
-    find ${pkgbase}-py2 -name '*py' -exec sed -e 's_#!/usr/bin/env python_&2_' -i {} \;
-}
-
 build()
 {
-    cd "$srcdir"/$pkgbase
+    cd "$srcdir"/"$pkgbase"
     python setup.py build
-    cd ../${pkgbase}-py2
-    python2 setup.py build
 }
 
-package_python-pyftpdlib()
+package()
 {
-    depends=('python')
-    cd "$srcdir"/$pkgbase
-    python setup.py install --root="${pkgdir}" --optimize=1
-}
-
-package_python2-pyftpdlib()
-{
-    depends=('python2')
-    cd "$srcdir"/${pkgbase}-py2
-    python2 setup.py install --root="${pkgdir}" --optimize=1
+    cd "$srcdir"/"$pkgbase"
+    python setup.py install --skip-build --optimize=1 --root="$pkgdir"
 }
