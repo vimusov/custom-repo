@@ -1,7 +1,7 @@
 # Maintainer: Vadim Kuznetsov <rics@gmx.it>
 
 pkgname=eclipse-cdt-vanilla
-pkgver=20160725
+pkgver=20170108
 pkgrel=1
 pkgdesc="Powerful C/C++ IDE (CDT vanilla version)"
 arch=('x86_64')
@@ -11,8 +11,8 @@ license=('EPL')
 depends=('jre' 'swt')
 conflicts=('eclipse-cdt' 'eclipse-cpp')
 provides=('eclipse-cdt' 'eclipse-cpp')
-source=("eclipse-cpp-neon-R-linux-gtk-x86_64.tar.gz")
-md5sums=('e9ee3b49afa8a9b7a46d744e87290301')
+source=("http://mirror.tspu.ru/eclipse/technology/epp/downloads/release/neon/2/eclipse-cpp-neon-2-linux-gtk-x86_64.tar.gz")
+md5sums=('b8bdb8ad054a69689cc59e858f568eb6')
 
 package()
 {
