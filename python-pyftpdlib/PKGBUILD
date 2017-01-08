@@ -1,26 +1,26 @@
-# Maintainer: Vadim Kuznetsov <rics@gmx.it>
+# Submitter: Gustavo Alvarez <sl1pkn07@gmaul.com>
+# Maintainer: Darshit Shah <darnir@gmail.com>
 
-pkgbase=pyftpdlib
-pkgname=python-$pkgbase
+pkgname=python-pyftpdlib
 pkgver=1.5.0
 pkgrel=1
-pkgdesc='Extremely fast and scalable Python FTP server library'
+pkgdesc="Python FTP server library"
 arch=('any')
-url='https://github.com/giampaolo/pyftpdlib'
-license=('custom')
+url="https://github.com/giampaolo/pyftpdlib"
+license=('MIT')
+source=("https://github.com/giampaolo/pyftpdlib/archive/release-${pkgver}.tar.gz")
 depends=('python')
-makedepends=('python-setuptools' 'git')
-source=("${pkgbase}::git+https://github.com/giampaolo/pyftpdlib#tag=release-$pkgver")
-md5sums=('SKIP')
+optdepends=("python-pyopenssl: required for SSL/TLS connections"
+            "python-sendfile: required for using the sendfile call")
+md5sums=('29267d266302387f80c3728b6f7234c9')
 
-build()
-{
-    cd "$srcdir"/"$pkgbase"
-    python setup.py build
+build(){
+  cd ${srcdir}/pyftpdlib-release-${pkgver}
+  python setup.py build
 }
 
-package()
-{
-    cd "$srcdir"/"$pkgbase"
-    python setup.py install --skip-build --optimize=1 --root="$pkgdir"
+package(){
+  cd ${srcdir}/pyftpdlib-release-${pkgver}
+  python setup.py install --root="${pkgdir}/" --optimize=1
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
