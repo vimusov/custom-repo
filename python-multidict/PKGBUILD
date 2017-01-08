@@ -1,18 +1,23 @@
 # Maintainer: renek <aur@spaceshore.net>
 _pkgname=multidict
 pkgname=python-${_pkgname}
-pkgver=1.2.2
+pkgver=2.1.4
 pkgrel=1
-pkgdesc="A multidict implementation"
+pkgdesc="An asyncio-based multidict implementation for Python"
 arch=('any')
 url='https://github.com/aio-libs/multidict'
 license=('APACHE')
 depends=('python')
 makedepends=('cython' 'python-setuptools')
 source=("https://github.com/aio-libs/multidict/archive/v${pkgver}.tar.gz")
-sha512sums=('4d13f8183a93b2bbea1a978946f86fa58298c5cbe922b60dc73f13dcf20d13c9c7e31d66c32b5b5abdded0a5ec4fa739d6c6c314fcda37fceffd442af148f72e')
+sha512sums=('1806f21a528f907ba16cada2eda05c7387d63bec45b7906a5a37eba834a87553c402766f4e50425a41414e93e2fc202d18ad9e6aaf02742fe06899e6a18109c8')
+
+build() {
+  cd "${srcdir}/${_pkgname}-${pkgver}"
+  python setup.py build
+}
 
 package() {
   cd "${srcdir}/${_pkgname}-${pkgver}"
-  python setup.py install --root="${pkgdir}/" --optimize=1
+  python setup.py install --root="${pkgdir}/" --optimize=1 --skip-build
 }
