@@ -1,6 +1,6 @@
 pkgname=deadwood
 pkgver=3.2.09
-pkgrel=2
+pkgrel=3
 pkgdesc="A fully recursive caching DNS resolver"
 arch=('i686' 'x86_64')
 url="http://maradns.samiam.org/deadwood/"
@@ -10,12 +10,10 @@ source=(
     "http://maradns.org/deadwood/stable/${pkgname}-${pkgver}.tar.bz2"
     config.example
     service
-    tmpfile
 )
 md5sums=('fc8ce5d3e7e6a9e09fc7e1a0ee1af88d'
-         'b9ac82557cb3f895f5ed932dc49aeeb8'
-         '7f3905f3fb5877979e385c54ea6ac899'
-         '98135313d9d0ec2f8bb873de9442d35a')
+         '0f1001b4104948440651bc5316ef8495'
+         '7f3905f3fb5877979e385c54ea6ac899')
 
 build()
 {
@@ -35,8 +33,4 @@ package()
     install -D --mode=0644 \
         "$srcdir"/service \
         "$pkgdir"/usr/lib/systemd/system/"${pkgname}.service"
-
-    install -D --mode=0644 \
-        "$srcdir"/tmpfile \
-        "$pkgdir"/usr/lib/tmpfiles.d/"${pkgname}.conf"
 }

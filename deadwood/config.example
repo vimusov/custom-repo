@@ -5,10 +5,9 @@ maradns_gid = 99
 
 maxprocs = 2048
 
-chroot_dir = "/run/deadwood"
+chroot_dir = "/"
 
-cache_file = "/cache"
-maximum_cache_elements = 60000
+maximum_cache_elements = 65536
 
 reject_mx = 0
 reject_ptr = 0
