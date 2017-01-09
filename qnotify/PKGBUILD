@@ -2,15 +2,21 @@
 
 pkgname=qnotify
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Utility that shows a text message on a screen'
 arch=('i686' 'x86_64')
-url='https://github.com/setsid/qnotify'
+url='https://github.com/vimusov/qnotify'
 license=('GPL')
 depends=('qt5-base')
-makedepends=('make' 'pkg-config')
-source=("git+https://github.com/setsid/${pkgname}.git#tag=v${pkgver}")
+makedepends=('make' 'clang')
+source=("git+https://github.com/vimusov/${pkgname}.git#tag=v${pkgver}")
 md5sums=('SKIP')
+
+prepare()
+{
+    cd "$srcdir"/"$pkgname"
+    qmake
+}
 
 build()
 {
@@ -21,5 +27,5 @@ build()
 package()
 {
     cd "$srcdir"/"$pkgname"
-    make install DESTDIR="$pkgdir"
+    make INSTALL_ROOT="$pkgdir" install
 }
