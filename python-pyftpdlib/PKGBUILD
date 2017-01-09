@@ -3,7 +3,7 @@
 
 pkgname=python-pyftpdlib
 pkgver=1.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Python FTP server library"
 arch=('any')
 url="https://github.com/giampaolo/pyftpdlib"
