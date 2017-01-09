@@ -2,7 +2,7 @@
 
 pkgname=('python-prctl' 'python2-prctl')
 pkgver=1.6.1
-pkgrel=1
+pkgrel=2
 pkgdesc='Python interface to the prctl() syscall'
 arch=('i686' 'x86_64')
 url='https://github.com/seveas/python-prctl'
