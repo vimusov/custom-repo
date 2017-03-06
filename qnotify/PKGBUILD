@@ -1,8 +1,8 @@
 # Maintainer: Vadim Kuznetsov <vimusov@gmail.com>
 
 pkgname=qnotify
-pkgver=1.0
-pkgrel=2
+pkgver=1.1
+pkgrel=1
 pkgdesc='Utility that shows a text message on a screen'
 arch=('i686' 'x86_64')
 url='https://github.com/vimusov/qnotify'
