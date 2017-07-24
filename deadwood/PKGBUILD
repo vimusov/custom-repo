@@ -12,7 +12,7 @@ source=(
     service
 )
 md5sums=('fc8ce5d3e7e6a9e09fc7e1a0ee1af88d'
-         '0f1001b4104948440651bc5316ef8495'
+         'ee063fed5409712e1eea930e4486385f'
          '7f3905f3fb5877979e385c54ea6ac899')
 
 build()

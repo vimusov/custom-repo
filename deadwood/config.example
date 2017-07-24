@@ -3,11 +3,13 @@
 maradns_uid = 99
 maradns_gid = 99
 
-maxprocs = 2048
-
 chroot_dir = "/"
 
+maxprocs = 2048
 maximum_cache_elements = 65536
+
+num_retries = 0
+timeout_seconds = 1
 
 reject_mx = 0
 reject_ptr = 0
