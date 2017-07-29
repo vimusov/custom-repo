@@ -1,0 +1,24 @@
+pkgname=meld
+pkgver=3.17.2
+pkgrel=1
+pkgdesc='Visual diff and merge tool'
+url='http://meldmerge.org/'
+license=(GPL)
+arch=(any)
+depends=(python-gobject python-cairo gtksourceview3 gsettings-desktop-schemas dconf)
+makedepends=(intltool itstool)
+optdepends=('python-dbus: open a new tab in an already running instance')
+source=("https://download.gnome.org/sources/meld/3.17/meld-${pkgver}.tar.xz")
+md5sums=('574e2e202b6d732de7bf647dc93d0279')
+
+build()
+{
+    cd "$srcdir"/"${pkgname}-$pkgver"
+    python setup.py build
+}
+
+package()
+{
+    cd "$srcdir"/"${pkgname}-$pkgver"
+    python setup.py --no-update-icon-cache --no-compile-schemas install --prefix=/usr --root="$pkgdir" --optimize=1
+}
