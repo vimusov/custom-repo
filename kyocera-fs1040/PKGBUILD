@@ -1,0 +1,43 @@
+pkgname=kyocera-fs1040
+pkgver=1.1203
+pkgrel=1
+pkgdesc="CUPS GDI propritary driver for Kyocera FS-1040"
+arch=('x86_64')
+url="https://www.kyoceradocumentsolutions.ru"
+license=('custom')
+depends=('cups' 'ghostscript')
+source=(
+    "https://cdn.kyostatics.net/dlc/ru/driver/all/linuxdrv_1_1203_fs-1x2xmfp.-downloadcenteritem-Single-File.downloadcenteritem.tmp/LinuxDrv_${pkgver}_FS-1x2xMFP.zip"
+    'cups-helper.patch'
+    'rastertokpsl-helper'
+)
+md5sums=('203cd4492c2b22b4fad046b67b4b022e'
+         '448ee09d60a2f2224eb9b8f3d155508c'
+         '49912540a2c4c62d9d6ef77fb6271a5a')
+
+prepare()
+{
+    tar --extract --gzip \
+        --directory="$srcdir" \
+        --file="$srcdir"/Linux/64bit/Global/English.tar.gz
+
+    msg2 "Applying patch on the original PPD..."
+
+    patch --strip=0 --directory="$srcdir"/English --input="$srcdir"/cups-helper.patch
+}
+
+package()
+{
+    install --directory --mode=0755 \
+        "$pkgdir"/usr/lib/cups/filter \
+        "$pkgdir"/usr/share/cups/model
+
+    install --mode=0755 \
+        --target-directory="$pkgdir"/usr/lib/cups/filter \
+        "$srcdir"/English/rastertokpsl \
+        "$srcdir"/rastertokpsl-helper
+
+    install --mode=0644 \
+        --target-directory="$pkgdir"/usr/share/cups/model \
+        "$srcdir"/English/Kyocera_FS-1040GDI.ppd
+}

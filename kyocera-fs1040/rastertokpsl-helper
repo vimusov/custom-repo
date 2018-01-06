@@ -1,0 +1,8 @@
+#!/bin/bash
+
+exec /usr/lib/cups/filter/rastertokpsl \
+    "$1" \
+    "$2" \
+    "$(echo "$3" | egrep -o '[[:alnum:]]' | tr -d '\n' | tail -c 20)" \
+    "$4" \
+    "$5"

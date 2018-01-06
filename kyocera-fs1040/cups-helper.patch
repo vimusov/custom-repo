@@ -1,0 +1,11 @@
+--- Kyocera_FS-1040GDI.ppd	2012-03-24 06:18:41.000000000 +0600
++++ Kyocera_FS-1040GDI.ppd.patched	2017-11-26 17:59:39.031989646 +0500
+@@ -52,7 +52,7 @@
+ *cupsModelNumber: 0
+ *cupsSNMPSupplies: False
+ 
+-*cupsFilter: "application/vnd.cups-raster 0 /usr/lib/cups/filter/rastertokpsl"
++*cupsFilter: "application/vnd.cups-raster 0 /usr/lib/cups/filter/rastertokpsl-helper"
+ 
+ *% Basic Device Capabilities
+ *LandscapeOrientation: Plus90
