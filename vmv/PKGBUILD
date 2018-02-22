@@ -1,0 +1,31 @@
+pkgbase=imv
+pkgname=vmv
+pkgver=2.1.3
+pkgrel=1
+pkgdesc='Image viewer for Wayland and X11 (based on imv)'
+url="https://github.com/eXeC64/imv"
+arch=('x86_64')
+license=('GPL')
+depends=('freeimage' 'sdl2_ttf' 'fontconfig')
+makedepends=('git')
+conflicts=('renameutils' 'imv')
+source=("git+https://github.com/eXeC64/imv.git#tag=v${pkgver}" "sorting.patch")
+sha1sums=('SKIP'
+          '12d11027a1ac656c14e5f9c3fe3a0f9f0542dd69')
+
+prepare()
+{
+    patch --strip=1 --directory="$pkgbase" --input="$startdir"/sorting.patch
+}
+
+build()
+{
+    make -C "$pkgbase" BUILDDIR=build
+}
+
+package()
+{
+    make -C "$pkgbase" BUILDDIR=build DESTDIR="$pkgdir" install
+    mv "$pkgdir"/usr/bin/{imv,vmv}
+    rm -rf "$pkgdir"/usr/share
+}
