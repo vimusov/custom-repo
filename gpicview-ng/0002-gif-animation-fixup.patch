@@ -1,0 +1,11 @@
+--- src/image-view.c	2016-02-21 03:38:31.000000000 +0500
++++ src/image-view.c.patched	2018-04-28 17:27:05.540553747 +0500
+@@ -343,7 +343,7 @@
+ 
+ void image_view_set_pixbuf( ImageView* iv, GdkPixbuf* pixbuf )
+ {
+-    if( pixbuf != iv->pix )
++    if( 1 )
+     {
+         image_view_clear( iv );
+         if( G_LIKELY(pixbuf) )
