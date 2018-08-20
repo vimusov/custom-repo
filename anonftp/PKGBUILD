@@ -2,7 +2,7 @@
 
 pkgname=anonftp
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Insecure anonymous FTP server based on pyftpdlib'
 arch=('any')
 url='https://github.com/vimusov/anonftp'
