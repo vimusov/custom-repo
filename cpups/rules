@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0764", ATTRS{idProduct}=="0501", SYMLINK+="cpups", TAG+="systemd", ENV{SYSTEMD_WANTS}+="cpups.service"
+ACTION=="remove", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0764", ATTRS{idProduct}=="0501", RUN+="/usr/bin/systemctl --no-block stop cpups.service"

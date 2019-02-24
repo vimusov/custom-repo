@@ -1,0 +1,29 @@
+--- pwrstatd.conf	2015-01-30 06:58:02.000000000 +0500
++++ pwrstatd.conf.patched	2019-02-24 11:36:13.212549799 +0500
+@@ -19,7 +19,7 @@
+ 
+ # Assign a path of script file for event of Power Failure.
+ # The default is /etc/pwrstatd-powerfail.sh
+-powerfail-cmd-path = /etc/pwrstatd-powerfail.sh
++powerfail-cmd-path = /usr/bin/true
+ 
+ # How much time in seconds to take script running for event of Power Failure.
+ # The allowed range is 0 ~ 3600. Default is 0 sec. 
+@@ -51,7 +51,7 @@
+ 
+ # Assign a path of script file for event of Battery Low.
+ # The default is /etc/pwrstatd-lowbatt.sh
+-lowbatt-cmd-path = /etc/pwrstatd-lowbatt.sh
++lowbatt-cmd-path = /usr/bin/cpups-poweroff
+ 
+ # How much time in seconds to take script running for event of Battery Low.
+ # The allowed range is 0 ~ 60. Default is 0 sec.
+@@ -118,7 +118,7 @@
+ #
+ # For example: restrict to use libusb device.
+ # allowed-device-nodes = libusb
+-allowed-device-nodes =
++allowed-device-nodes = /dev/cpups
+ 
+ # Daemon will hibernate system to instead of system shutdown when power
+ # event occur. Allowed options are yes and no. Default is no.

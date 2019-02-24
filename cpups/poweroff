@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo 'UPS battery is dying, shutting down the OS gently.' | systemd-cat --identifier=cpups --priority=crit
+sync
+exec systemctl poweroff

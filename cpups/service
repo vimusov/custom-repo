@@ -1,0 +1,8 @@
+[Unit]
+Description=CyberPower UPS monitoring and management daemon
+
+[Service]
+ExecStartPre=/usr/bin/rm -f /var/pwrstatd.dev /var/pwrstatd.ipc /var/log/pwrstatd.log
+ExecStart=/usr/bin/pwrstatd
+ExecStopPost=/usr/bin/rm -f /var/pwrstatd.dev /var/pwrstatd.ipc
+Restart=on-failure
