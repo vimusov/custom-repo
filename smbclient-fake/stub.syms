@@ -1,0 +1,11 @@
+SMBCLIENT_0.1.0 {
+global:
+        smbc_close;
+        smbc_init;
+        smbc_lseek;
+        smbc_open;
+        smbc_read;
+        smbc_write;
+local:
+       *;
+};

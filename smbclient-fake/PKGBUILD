@@ -1,0 +1,29 @@
+pkgname=smbclient-fake
+pkgver=4.9.4
+pkgrel=1
+pkgdesc="Fake smbclient libraries"
+arch=('x86_64')
+license=('GPL')
+url="https://github.com/vimusov"
+depends=('glibc')
+makedepends=('clang' 'make')
+conflicts=('smbclient')
+provides=('smbclient=999999')
+source=('Makefile'
+        'stub.c'
+        'stub.syms')
+md5sums=('ba6e6e4b40b5624264e1c173ed5334be'
+         '6bac34a24ff30aae04436c5095e012e7'
+         '13cd9d9137758fa7ec4c3b803ed4abb2')
+
+build()
+{
+    cd "$srcdir"
+    make
+}
+
+package()
+{
+    cd "$srcdir"
+    make DESTDIR="$pkgdir" install
+}
