@@ -1,0 +1,19 @@
+pkgname=torxy
+pkgver=1.0
+pkgrel=1
+pkgdesc='Rules-based transparent HTTP/HTTPS proxy for the TOR server.'
+arch=('any')
+url='https://github.com/vimusov/torxy'
+license=('GPL')
+depends=('python-dpkt' 'python-systemd')
+backup=('etc/torxy.rules')
+install=install
+source=("git+https://github.com/vimusov/${pkgname}.git#tag=v${pkgver}" rules service)
+md5sums=('SKIP' '808d3df5c44da3c15cc78173be3ca807' '1cac945cd11fc2c74bcb5857790d86ec')
+
+package()
+{
+    install -D --mode=0755 "$srcdir"/"$pkgname"/"${pkgname}.py" "$pkgdir"/usr/bin/"$pkgname"
+    install -D --mode=0644 rules "$pkgdir"/etc/"${pkgname}.rules"
+    install -D --mode=0644 service "$pkgdir"/usr/lib/systemd/system/"${pkgname}.service"
+}

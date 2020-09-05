@@ -1,0 +1,14 @@
+[Unit]
+Description=Rules-based transparent HTTP/HTTPS proxy for the TOR server.
+After=network-online.target
+
+[Service]
+Type=notify
+User=torxy
+Group=torxy
+ExecStart=/usr/bin/torxy
+ExecReload=/usr/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

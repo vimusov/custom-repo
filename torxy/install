@@ -1,0 +1,12 @@
+post_install()
+{
+    getent group torxy >/dev/null 2>&1 || groupadd --system torxy
+    getent passwd torxy >/dev/null 2>&1 || useradd \
+        --home-dir / \
+        --no-create-home \
+        --no-log-init \
+        --no-user-group \
+        --shell /sbin/nologin \
+        --system \
+        torxy
+}
