@@ -1,0 +1,35 @@
+# Maintainer: someoneelse <lllusion3418@gmail.com>
+
+pkgname=fstl
+pkgver=0.9.4
+pkgrel=1
+pkgdesc="A viewer for .stl files"
+url="http://www.mattkeeter.com/projects/fstl/"
+arch=('any')
+license=('MIT')
+depends=('qt5-base')
+source=("https://github.com/mkeeter/fstl/archive/v${pkgver}.tar.gz"
+        "desktop"
+        "icon.png")
+sha256sums=('5c2d6bf14ec0bee15d415a0810787bfd714971822a4fa9433c6ea476484dd335'
+            '53d2a7911cacc1ca8e9fe823e8ecf2777c1158f51d2b909ebb106d976c70bec5'
+            'a195a1275b373a21b5e4c045099aa5cf4605d35fb1e64523483029464ee9a6ba')
+
+build()
+{
+    cd "$srcdir"/"${pkgname}-$pkgver"
+    mkdir -p build
+    pushd build
+    qmake-qt5 PREFIX="/usr" ../qt/fstl.pro
+    make
+    popd
+}
+
+package()
+{
+    cd "$srcdir"/"${pkgname}-$pkgver"
+    make -C build INSTALL_ROOT="$pkgdir" install
+    install -D --mode=0755 build/"$pkgname" "$pkgdir"/usr/bin/"$pkgname"
+    install -D --mode=0644 "$srcdir"/desktop "$pkgdir"/usr/share/applications/"${pkgname}.desktop"
+    install -D --mode=0644 "$srcdir"/icon.png "$pkgdir"/usr/share/pixmaps/"${pkgname}.png"
+}
