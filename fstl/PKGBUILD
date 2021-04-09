@@ -2,7 +2,7 @@
 
 pkgname=fstl
 pkgver=0.9.4
-pkgrel=1
+pkgrel=2
 pkgdesc="A viewer for .stl files"
 url="http://www.mattkeeter.com/projects/fstl/"
 arch=('any')

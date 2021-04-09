@@ -1,13 +1,13 @@
 pkgname=kyocera-fs1040
 pkgver=1.1203
-pkgrel=1
+pkgrel=2
 pkgdesc="CUPS GDI propritary driver for Kyocera FS-1040"
 arch=('x86_64')
 url="https://www.kyoceradocumentsolutions.ru"
 license=('custom')
 depends=('cups' 'ghostscript')
 source=(
-    "https://cdn.kyostatics.net/dlc/ru/driver/all/linuxdrv_1_1203_fs-1x2xmfp.-downloadcenteritem-Single-File.downloadcenteritem.tmp/LinuxDrv_${pkgver}_FS-1x2xMFP.zip"
+    "https://www.kyoceradocumentsolutions.ru/content/download-center/ru/drivers/all/LinuxDrv_${pkgver/./_}_FS_1x2xMFP_zip.download.zip"
     'cups-helper.patch'
     'rastertokpsl-helper'
 )
